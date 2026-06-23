@@ -164,6 +164,14 @@ tofu apply
 tofu destroy
 ```
 
+> ⚠️ **CẢNH BÁO: State file chứa thông tin nhạy cảm**
+>
+> File `terraform.tfstate` chứa toàn bộ thông tin tài nguyên đã tạo, bao gồm cả **dữ liệu nhạy cảm** (IP, ID, trạng thái tài nguyên,...). **Không commit file này lên Git public.** Nếu mất state, bạn không thể `tofu destroy` — phải xoá thủ công từng resource qua AWS Console.
+>
+> - **Luôn giữ bí mật** — không đưa `*.tfstate` lên Git public
+> - **Sao lưu** ra nơi an toàn (S3 bucket có versioning, Git private repo, hoặc copy ra máy khác)
+> - Khuyến nghị: cấu hình [S3 backend](https://opentofu.org/docs/language/settings/backends/s3/) để lưu state từ xa có mã hoá khi triển khai thật
+
 ### Truy cập EC2
 
 Instance không có SSH (security group zero inbound). Chỉ truy cập được qua SSM:
