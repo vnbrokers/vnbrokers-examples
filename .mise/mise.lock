@@ -5,6 +5,7 @@ version = "2.36.14"
 backend = "aqua:aws/aws-cli"
 
 [tools.awscli."platforms.linux-arm64"]
+checksum = "blake3:c6f3f1e7b48200874101484c942c1d6d5152e75efaca0dc582c7dfc539705d37"
 url = "https://awscli.amazonaws.com/awscli-exe-linux-aarch64-2.36.14.zip"
 
 [tools.awscli."platforms.linux-arm64-musl"]
