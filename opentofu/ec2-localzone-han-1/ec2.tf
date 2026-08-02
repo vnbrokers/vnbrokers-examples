@@ -58,6 +58,6 @@ resource "aws_instance" "this" {
     Environment = var.environment
     Project     = var.project_name
     ManagedBy   = "opentofu"
-    Schedule    = "mon-fri_8-16"
+    Schedule    = "mon-fri_7-16"
   }
 }

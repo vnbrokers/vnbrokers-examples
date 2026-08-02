@@ -35,7 +35,7 @@ output "security_group_id" {
 
 output "schedule_description" {
   description = "Instance schedule"
-  value       = "Mon-Fri 8:00-16:00 Hanoi (UTC+7)"
+  value       = "Mon-Fri 7:00-16:00 Hanoi (UTC+7)"
 }
 
 output "ssm_command" {

@@ -16,7 +16,7 @@ resource "aws_lambda_function" "scheduler" {
   environment {
     variables = {
       TAG_KEY   = "Schedule"
-      TAG_VALUE = "mon-fri_8-16"
+      TAG_VALUE = "mon-fri_7-16"
     }
   }
 
@@ -30,8 +30,8 @@ resource "aws_lambda_function" "scheduler" {
 
 resource "aws_cloudwatch_event_rule" "start" {
   name                = "${var.project_name}-${var.environment}-start-rule"
-  description         = "Start EC2 instances at 8AM Hanoi (1AM UTC) on weekdays"
-  schedule_expression = "cron(0 1 ? * MON-FRI *)"
+  description         = "Start EC2 instances at 7AM Hanoi (0AM UTC) on weekdays"
+  schedule_expression = "cron(0 0 ? * MON-FRI *)"
 
   tags = {
     Environment = var.environment
