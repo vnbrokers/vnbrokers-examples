@@ -29,9 +29,9 @@ variable "instance_type" {
 }
 
 variable "schedule_start_hour" {
-  description = "Start hour UTC (1 = 8AM Hanoi)"
+  description = "Start hour UTC (0 = 7AM Hanoi)"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "schedule_stop_hour" {

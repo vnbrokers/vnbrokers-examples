@@ -1,6 +1,6 @@
 # EC2 Local Zone Hà Nội (ap-southeast-1-han-1a)
 
-Triển khai EC2 instance trên AWS Local Zone tại Hà Nội (`ap-southeast-1-han-1a`), chỉ truy cập được qua **AWS Systems Manager Session Manager**, có lịch bật/tắt tự động (Thứ 2–Thứ 6, 8:00–16:00 giờ Hà Nội).
+Triển khai EC2 instance trên AWS Local Zone tại Hà Nội (`ap-southeast-1-han-1a`), chỉ truy cập được qua **AWS Systems Manager Session Manager**, có lịch bật/tắt tự động (Thứ 2–Thứ 6, 7:00–16:00 giờ Hà Nội).
 
 ## Kiến trúc
 
@@ -19,11 +19,11 @@ AWS Region ap-southeast-1
 
 ```
 CloudWatch Events (cron)
-  ├── 0 1 ? * MON-FRI * → Lambda (action=start) → EC2 StartInstances
+  ├── 0 0 ? * MON-FRI * → Lambda (action=start) → EC2 StartInstances
   └── 0 9 ? * MON-FRI * → Lambda (action=stop)  → EC2 StopInstances
 ```
 
-Lambda kiểm tra tag `Schedule=mon-fri_8-16` để biết instance nào cần quản lý.
+Lambda kiểm tra tag `Schedule=mon-fri_7-16` để biết instance nào cần quản lý.
 
 ## Yêu cầu
 
@@ -195,7 +195,7 @@ tofu output ssm_command
 | `project_name` | `vnbrokers` | Prefix đặt tên resource |
 | `han_zone` | `ap-southeast-1-han-1a` | Tên Local Zone |
 | `instance_type` | `c7i.large` | Loại instance (C7i, M7i, R7i khả dụng trong HAN zone) |
-| `schedule_start_hour` | `1` | Giờ bật UTC (1 = 8AM Hà Nội) |
+| `schedule_start_hour` | `0` | Giờ bật UTC (0 = 7AM Hà Nội) |
 | `schedule_stop_hour` | `9` | Giờ tắt UTC (9 = 4PM Hà Nội) |
 | `schedule_days` | `MON-FRI` | Ngày chạy schedule |
 | `ami_name_pattern` | `al2023-ami-\*-kernel-6.1-x86_64` | Pattern tìm AMI |
@@ -218,7 +218,7 @@ tofu output ssm_command
 | `subnet_id` | Subnet ID |
 | `security_group_id` | Security Group ID |
 | `ami_used` | AMI ID |
-| `schedule_description` | `"Mon-Fri 8:00-16:00 Hanoi (UTC+7)"` |
+| `schedule_description` | `"Mon-Fri 7:00-16:00 Hanoi (UTC+7)"` |
 | `ssm_command` | Câu lệnh SSM để kết nối |
 
 ## Cấu trúc thư mục

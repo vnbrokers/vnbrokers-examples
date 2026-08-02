@@ -7,7 +7,7 @@ ec2 = boto3.client("ec2")
 def lambda_handler(event, context):
     action = event.get("action", "")
     tag_key = os.environ.get("TAG_KEY", "Schedule")
-    tag_value = os.environ.get("TAG_VALUE", "mon-fri_8-16")
+    tag_value = os.environ.get("TAG_VALUE", "mon-fri_7-16")
 
     response = ec2.describe_instances(
         Filters=[
